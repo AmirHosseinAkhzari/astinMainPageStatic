@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>گیوه — کتابخانه هوشمند مدرسه</title>
+     <link rel="icon" href="./geve.svg" type="image/x-icon">
+
+
+  <style>
+    :root {
+      --white:      #ffffff;
+      --off-white:  #F7F7F5;
+      --black:      #0a0a0a;
+      --black-soft: #1a1a1a;
+      --gray-1:     #f0f0ee;
+      --gray-2:     #e0e0de;
+      --gray-3:     #aaa;
+      --gray-4:     #555;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    @font-face {
+
+  font-family: "Vazirmatn";
+
+  src: url("./Vazir-Bold.ttf") format("truetype");
+
+  font-weight: 100 900;
+
+  font-style: normal;
+
+}
+
+    body {
+      font-family: 'Vazirmatn', sans-serif;
+      background: var(--white);
+      color: var(--black);
+      overflow-x: hidden;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: var(--white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 80px 24px 140px;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--gray-2);
+    }
+
+    /* subtle dot grid */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, #ccc 1px, transparent 1px);
+      background-size: 32px 32px;
+      opacity: 0.35;
+      pointer-events: none;
+    }
+
+    /* big faded background word */
+    .hero-bg-text {
+      position: absolute;
+      font-size: clamp(12rem, 35vw, 28rem);
+      font-weight: 900;
+      color: rgba(0,0,0,0.04);
+      letter-spacing: -0.05em;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      white-space: nowrap;
+      user-select: none;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      border: 1px solid var(--gray-2);
+      color: var(--gray-4);
+      font-size: 0.73rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      padding: 8px 22px;
+      border-radius: 100px;
+      margin-bottom: 52px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.2s forwards;
+      position: relative;
+    }
+
+    .hero-book-icon {
+      width: 84px; height: 84px;
+      border: 1px solid var(--gray-2);
+      border-radius: 22px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.4rem;
+      margin: 0 auto 36px;
+      background: var(--white);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.35s forwards;
+      position: relative;
+    }
+
+    .hero h1 {
+      font-size: clamp(6rem, 22vw, 15rem);
+      font-weight: 900;
+      color: var(--black);
+      line-height: 0.88;
+      letter-spacing: -0.05em;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.5s forwards;
+      position: relative;
+    }
+
+    .hero-tagline {
+      font-size: clamp(1rem, 2.2vw, 1.35rem);
+      font-weight: 300;
+      color: var(--gray-4);
+      margin-top: 28px;
+      letter-spacing: 0.04em;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.7s forwards;
+      position: relative;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 44px;
+      left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 1.1s forwards;
+    }
+
+    .hero-scroll span {
+      font-size: 0.68rem;
+      color: var(--gray-3);
+      letter-spacing: 0.14em;
+    }
+
+    .scroll-line {
+      width: 1px; height: 48px;
+      background: linear-gradient(to bottom, var(--black), transparent);
+      animation: growLine 1.8s ease infinite;
+    }
+
+    @keyframes growLine {
+      0%   { transform: scaleY(0); transform-origin: top; opacity:1; }
+      50%  { transform: scaleY(1); transform-origin: top; opacity:1; }
+      51%  { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; opacity:0; }
+    }
+
+    /* ===== INTRO ===== */
+    .intro {
+      padding: 120px 24px;
+      max-width: 860px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--gray-2);
+    }
+
+    .label-tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gray-3);
+      margin-bottom: 32px;
+      display: block;
+    }
+
+    .intro p {
+      font-size: clamp(1.25rem, 2.6vw, 1.65rem);
+      font-weight: 300;
+      line-height: 2;
+      color: var(--black);
+      opacity: 0;
+      transform: translateY(28px);
+      transition: all 0.8s ease;
+    }
+
+    .intro p.visible { opacity: 1; transform: translateY(0); }
+    .intro strong { font-weight: 800; }
+
+    /* ===== FEATURES ===== */
+    .features {
+      background: var(--black);
+      padding: 120px 24px;
+    }
+
+    .features-inner { max-width: 1100px; margin: 0 auto; }
+
+    .feat-label {
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.22em;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 20px;
+    }
+
+    .feat-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900; color: var(--white);
+      line-height: 1.1; letter-spacing: -0.02em;
+      margin-bottom: 64px;
+    }
+
+    .feat-title.light { color: var(--black); }
+
+    .feat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .feat-card {
+      background: var(--black-soft);
+      padding: 40px 30px;
+      opacity: 0;
+      transform: translateY(28px);
+      transition: all 0.55s ease;
+    }
+
+    .feat-card.visible { opacity: 1; transform: translateY(0); }
+    .feat-card:hover { background: #222; }
+
+    .feat-icon {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .feat-card h3 {
+      font-size: 1.05rem; font-weight: 700;
+      color: var(--white); margin-bottom: 12px;
+    }
+
+    .feat-card p {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.48);
+      line-height: 1.85;
+    }
+
+    /* ===== HOW IT WORKS ===== */
+    .how-section {
+      padding: 120px 24px;
+      border-bottom: 1px solid var(--gray-2);
+    }
+
+    .how-inner { max-width: 900px; margin: 0 auto; }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2px;
+      margin-top: 64px;
+      border: 1px solid var(--gray-2);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .step-card {
+      padding: 36px 28px;
+      background: var(--white);
+      border-left: 1px solid var(--gray-2);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease;
+    }
+
+    .step-card:first-child { border-left: none; }
+    .step-card.visible { opacity: 1; transform: translateY(0); }
+    .step-card:hover { background: var(--off-white); }
+
+    .step-num {
+      font-size: 3rem; font-weight: 900;
+      color: var(--gray-2);
+      line-height: 1;
+      margin-bottom: 16px;
+      letter-spacing: -0.04em;
+    }
+
+    .step-card h3 {
+      font-size: 1rem; font-weight: 700;
+      color: var(--black); margin-bottom: 10px;
+    }
+
+    .step-card p {
+      font-size: 0.85rem; color: var(--gray-4); line-height: 1.8;
+    }
+
+    /* ===== MOCKUP ===== */
+    .mockup-section {
+      background: var(--off-white);
+      padding: 120px 24px;
+    }
+
+    .mockup-inner { max-width: 1100px; margin: 0 auto; }
+
+    .phones-stage {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 18px;
+      margin-top: 64px;
+    }
+
+    .phone {
+      background: var(--white);
+      border-radius: 36px;
+      overflow: hidden;
+      box-shadow: 0 28px 72px rgba(0,0,0,0.11);
+      opacity: 0;
+      transition: all 0.7s ease;
+      flex-shrink: 0;
+    }
+
+    .phone.visible { opacity: 1; }
+    .phone.main { width: 210px; z-index: 3; transform: translateY(0); }
+    .phone.side { width: 184px; z-index: 2; }
+    .phone.left { transform: rotate(-5deg) translateY(28px); }
+    .phone.right { transform: rotate(5deg) translateY(28px); }
+    .phone.main.visible { transform: translateY(0); }
+    .phone.left.visible { transform: rotate(-5deg) translateY(28px); }
+    .phone.right.visible { transform: rotate(5deg) translateY(28px); }
+
+    .ph {
+      padding: 14px 16px 10px;
+      display: flex; align-items: center; gap: 10px;
+      color: var(--white);
+      font-size: 0.82rem; font-weight: 700;
+    }
+
+    .pb {
+      padding: 13px;
+      display: flex; flex-direction: column; gap: 8px;
+      background: #f4f4f2;
+      min-height: 290px;
+    }
+
+    .pb-chip {
+      border-radius: 10px; padding: 11px 14px;
+      font-size: 0.74rem; font-weight: 700;
+      text-align: center;
+      color: var(--white);
+      background: var(--black);
+    }
+
+    .pb-row {
+      background: var(--white);
+      border-radius: 11px; padding: 10px 13px;
+      display: flex; align-items: center; gap: 9px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+
+    .pb-row-icon {
+      width: 30px; height: 30px; border-radius: 8px;
+      background: var(--gray-1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem; flex-shrink: 0;
+    }
+
+    .pb-row-text .t { font-size: 0.72rem; font-weight: 700; color: var(--black); }
+    .pb-row-text .s { font-size: 0.6rem; color: var(--gray-3); margin-top: 2px; }
+
+    .pb-badge {
+      display: inline-block;
+      padding: 3px 9px; border-radius: 100px;
+      font-size: 0.58rem; font-weight: 700;
+    }
+
+    .pb-badge.active { background: #dcfce7; color: #16a34a; }
+    .pb-badge.due    { background: #fef9c3; color: #ca8a04; }
+    .pb-badge.late   { background: #fee2e2; color: #dc2626; }
+
+    /* ===== REMINDER ===== */
+    .reminder-section {
+      padding: 120px 24px;
+      max-width: 900px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--gray-2);
+    }
+
+    .reminder-card {
+      border: 1px solid var(--gray-2);
+      border-radius: 24px;
+      overflow: hidden;
+      margin-top: 56px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+      opacity: 0;
+      transform: translateY(24px);
+      transition: all 0.7s ease;
+    }
+
+    .reminder-card.visible { opacity: 1; transform: translateY(0); }
+
+    .reminder-header {
+      background: var(--black);
+      padding: 28px 32px;
+      display: flex; align-items: center; gap: 16px;
+    }
+
+    .reminder-header-icon {
+      width: 44px; height: 44px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; flex-shrink: 0;
+    }
+
+    .reminder-header h3 {
+      font-size: 1.1rem; font-weight: 700; color: var(--white);
+    }
+
+    .reminder-header p {
+      font-size: 0.78rem; color: rgba(255,255,255,0.45); margin-top: 3px;
+    }
+
+    .reminder-body { padding: 28px 32px; display: flex; flex-direction: column; gap: 14px; }
+
+    .notif-item {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 16px 18px;
+      border-radius: 14px;
+      border: 1px solid var(--gray-2);
+      background: var(--white);
+    }
+
+    .notif-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      margin-top: 4px; flex-shrink: 0;
+    }
+
+    .notif-item .t { font-size: 0.88rem; font-weight: 700; color: var(--black); }
+    .notif-item .s { font-size: 0.75rem; color: var(--gray-4); margin-top: 4px; line-height: 1.6; }
+
+    /* ===== PANEL SECTION ===== */
+    .panel-section {
+      background: var(--black);
+      padding: 120px 24px;
+    }
+
+    .panel-inner { max-width: 1000px; margin: 0 auto; }
+
+    .panel-mockup {
+      margin-top: 64px;
+      background: #111;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.06);
+      box-shadow: 0 32px 80px rgba(0,0,0,0.4);
+      opacity: 0;
+      transform: translateY(32px);
+      transition: all 0.8s ease;
+    }
+
+    .panel-mockup.visible { opacity: 1; transform: translateY(0); }
+
+    .panel-topbar {
+      background: #0d0d0d;
+      padding: 16px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .panel-topbar-title {
+      font-size: 0.9rem; font-weight: 700; color: var(--white);
+      display: flex; align-items: center; gap: 10px;
+    }
+
+    .panel-topbar-actions {
+      display: flex; gap: 8px;
+    }
+
+    .panel-btn {
+      padding: 7px 16px; border-radius: 8px;
+      font-size: 0.72rem; font-weight: 600;
+      border: none; cursor: pointer;
+    }
+
+    .panel-btn.primary { background: var(--white); color: var(--black); }
+    .panel-btn.ghost   { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.6); }
+
+    .panel-body {
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+    }
+
+    .panel-stat {
+      background: #1a1a1a;
+      border-radius: 14px; padding: 20px 18px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .panel-stat .lbl { font-size: 0.68rem; color: rgba(255,255,255,0.35); margin-bottom: 8px; letter-spacing: 0.08em; }
+    .panel-stat .val { font-size: 2rem; font-weight: 900; color: var(--white); line-height: 1; }
+    .panel-stat .chg { font-size: 0.68rem; margin-top: 6px; }
+    .panel-stat .chg.up   { color: #4ade80; }
+    .panel-stat .chg.warn { color: #fbbf24; }
+
+    .panel-table {
+      grid-column: 1 / -1;
+      background: #1a1a1a;
+      border-radius: 14px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .pt-header {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      padding: 12px 18px;
+      background: #111;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .pt-header span {
+      font-size: 0.65rem; font-weight: 700;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.12em;
+    }
+
+    .pt-row {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      padding: 12px 18px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      align-items: center;
+    }
+
+    .pt-row:last-child { border-bottom: none; }
+
+    .pt-row span { font-size: 0.78rem; color: rgba(255,255,255,0.7); }
+    .pt-row span.bold { font-weight: 700; color: var(--white); }
+
+    .pt-status {
+      display: inline-block; padding: 3px 10px;
+      border-radius: 100px; font-size: 0.65rem; font-weight: 700;
+    }
+
+    .pt-status.ok   { background: rgba(74,222,128,0.12); color: #4ade80; }
+    .pt-status.due  { background: rgba(251,191,36,0.12);  color: #fbbf24; }
+    .pt-status.late { background: rgba(248,113,113,0.12); color: #f87171; }
+
+    /* ===== ASTIN BRIDGE ===== */
+    .bridge-section {
+      padding: 120px 24px;
+      border-bottom: 1px solid var(--gray-2);
+    }
+
+    .bridge-inner {
+      max-width: 860px; margin: 0 auto; text-align: center;
+    }
+
+    .bridge-inner h2 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 900; color: var(--black);
+      line-height: 1.2; margin: 16px 0 20px;
+    }
+
+    .bridge-inner > p {
+      font-size: 1rem; color: var(--gray-4);
+      line-height: 1.9; max-width: 560px;
+      margin: 0 auto 56px;
+    }
+
+    .bridge-row {
+      display: flex; align-items: center;
+      justify-content: center; gap: 0;
+      flex-wrap: wrap;
+    }
+
+    .b-node {
+      border: 1px solid var(--gray-2);
+      border-radius: 16px; padding: 20px 26px;
+      text-align: center;
+      opacity: 0; transform: translateY(18px);
+      transition: all 0.5s ease;
+      background: var(--white);
+    }
+
+    .b-node.visible { opacity: 1; transform: translateY(0); }
+    .b-node .ico { font-size: 1.7rem; display: block; margin-bottom: 8px; }
+    .b-node .nm  { font-size: 0.9rem; font-weight: 700; color: var(--black); }
+    .b-node .dc  { font-size: 0.68rem; color: var(--gray-3); margin-top: 3px; }
+
+    .b-arrow { color: var(--gray-3); font-size: 1.3rem; padding: 0 14px; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--black);
+      padding: 60px 24px;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-size: 3rem; font-weight: 900;
+      color: var(--white); letter-spacing: -0.05em;
+    }
+
+    .footer-sub {
+      font-size: 0.78rem; color: rgba(255,255,255,0.25);
+      margin-top: 14px;
+    }
+
+    .footer-eco {
+      display: flex; gap: 14px;
+      justify-content: center; flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .fe { font-size: 0.72rem; color: rgba(255,255,255,0.28); }
+    .fe.active { color: rgba(255,255,255,0.7); font-weight: 700; }
+    .fe-sep { color: rgba(255,255,255,0.12); }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(26px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 700px) {
+      .phones-stage .phone.side { display: none; }
+      .phone.main { width: 230px !important; }
+      .panel-body { grid-template-columns: 1fr; }
+      .pt-header, .pt-row { grid-template-columns: 2fr 1fr 1fr; }
+      .pt-header span:last-child,
+      .pt-row span:last-child { display: none; }
+      .bridge-row { flex-direction: column; }
+      .b-arrow { transform: rotate(90deg); }
+      .steps-grid { grid-template-columns: 1fr; }
+    }
+
+        img[src$="./geve.svg"] {
+        width: 80px;      
+    height: 80px;  
+    object-fit: cover;
+    
+}
+a{
+  text-decoration: none;
+  color: gray;
+}
+  </style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-bg-text">گیوه</div>
+
+  <div class="hero-eyebrow">کتابخانه هوشمند مدرسه</div>
+
+  <div class="hero-book-icon">
+    <img src="./geve.svg" alt="">
+  </div>
+
+  <h1>گیوه</h1>
+  <p class="hero-tagline">مدیریت کامل کتابخانه — از عضویت تا بازگشت کتاب</p>
+
+  <div class="hero-scroll">
+    <span>بیشتر بدانید</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ===== INTRO ===== -->
+<section class="intro">
+  <span class="label-tag">۰۰۱ — درباره گیوه</span>
+  <p>
+    گیوه زیرمجموعه‌ای از <strong>نرم‌افزار اصلی آستین</strong> است که تمام
+    فعالیت‌های کتابخانه مدرسه را پوشش می‌دهد. از <strong>عضویت دانش‌آموزان</strong>
+    گرفته تا <strong>امانت و بازگشت کتاب</strong> — همه با یک اسکن ساده.
+  </p>
+</section>
+
+<!-- ===== FEATURES ===== -->
+<section class="features">
+  <div class="features-inner">
+    <div class="feat-label">۰۰۲ — قابلیت‌ها</div>
+    <h2 class="feat-title">کتابخانه‌ای که<br>خودش مدیریت می‌شود</h2>
+
+    <div class="feat-grid">
+      <div class="feat-card">
+        <span class="feat-icon">🪪</span>
+        <h3>عضویت دیجیتال</h3>
+        <p>دانش‌آموزان با همان تگ NFC آستین عضو کتابخانه می‌شوند. بدون فرم‌های کاغذی.</p>
+      </div>
+      <div class="feat-card">
+        <span class="feat-icon">📖</span>
+        <h3>امانت کتاب</h3>
+        <p>اسکن تگ دانش‌آموز + بارکد کتاب = ثبت امانت. سریع، دقیق و بدون خطا.</p>
+      </div>
+      <div class="feat-card">
+        <span class="feat-icon">↩️</span>
+        <h3>بازگشت کتاب</h3>
+        <p>فرآیند بازگشت کتاب در کمتر از ۵ ثانیه ثبت می‌شود و تاریخ بازگشت به‌روز می‌گردد.</p>
+      </div>
+      <div class="feat-card">
+        <span class="feat-icon">🔔</span>
+        <h3>یادآوری هوشمند</h3>
+        <p>اگر موعد بازگشت کتابی نزدیک باشد، گیوه به دانش‌آموز یادآوری می‌کند.</p>
+      </div>
+      <div class="feat-card">
+        <span class="feat-icon">📊</span>
+        <h3>پنل مدیریت</h3>
+        <p>رئیس کتابخانه داده‌های کامل کتاب‌ها، امانت‌ها و آمار استفاده را در یک پنل می‌بیند.</p>
+      </div>
+      <div class="feat-card">
+        <span class="feat-icon">🔍</span>
+        <h3>جستجوی پیشرفته</h3>
+        <p>جستجو بر اساس نام کتاب، نویسنده یا دانش‌آموز در کسری از ثانیه نتیجه می‌دهد.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HOW IT WORKS ===== -->
+<section class="how-section">
+  <div class="how-inner">
+    <span class="label-tag">۰۰۳ — نحوه کار</span>
+    <h2 class="feat-title light">امانت گرفتن کتاب<br>در سه قدم</h2>
+
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">۱</div>
+        <h3>اسکن دانش‌آموز</h3>
+        <p>دانش‌آموز آستین لباسش را نزدیک دستگاه می‌کند. هویت او شناخته می‌شود.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">۲</div>
+        <h3>انتخاب کتاب</h3>
+        <p>بارکد کتاب اسکن می‌شود. گیوه موجودی و وضعیت کتاب را بررسی می‌کند.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">۳</div>
+        <h3>ثبت امانت</h3>
+        <p>امانت ثبت می‌شود. تاریخ بازگشت تعیین می‌شود. یادآوری فعال می‌گردد.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">۴</div>
+        <h3>بازگشت کتاب</h3>
+        <p>دانش‌آموز کتاب را برمی‌گرداند. یک اسکن ساده و پرونده بسته می‌شود.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MOCKUP ===== -->
+<section class="mockup-section">
+  <div class="mockup-inner">
+    <span class="label-tag">۰۰۴ — رابط کاربری</span>
+    <h2 class="feat-title light">تجربه‌ای روان<br>برای دانش‌آموزان</h2>
+
+    <div class="phones-stage">
+
+      <!-- left: book list -->
+      <div class="phone side left">
+        <div class="ph" style="background:#0a0a0a;">
+          <span>📚</span>
+          <span>کتاب‌های موجود</span>
+        </div>
+        <div class="pb">
+          <div class="pb-chip">جستجو در کتابخانه</div>
+          <div class="pb-row">
+            <div class="pb-row-icon">📗</div>
+            <div class="pb-row-text">
+              <div class="t">شازده کوچولو</div>
+              <div class="s">آنتوان دو سنت‌اگزوپری</div>
+              <span class="pb-badge active">موجود</span>
+            </div>
+          </div>
+          <div class="pb-row">
+            <div class="pb-row-icon">📘</div>
+            <div class="pb-row-text">
+              <div class="t">بینوایان</div>
+              <div class="s">ویکتور هوگو</div>
+              <span class="pb-badge due">امانت رفته</span>
+            </div>
+          </div>
+          <div class="pb-row">
+            <div class="pb-row-icon">📕</div>
+            <div class="pb-row-text">
+              <div class="t">کیمیاگر</div>
+              <div class="s">پائولو کوئلو</div>
+              <span class="pb-badge active">موجود</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- main: my books -->
+      <div class="phone main">
+        <div class="ph" style="background:#0a0a0a; font-size:0.88rem;">
+          <span>📚</span>
+          <span>گیوه</span>
+        </div>
+        <div class="pb">
+          <div style="background:#0a0a0a; border-radius:10px; padding:12px; text-align:center;">
+            <div style="font-size:0.62rem; color:rgba(255,255,255,0.35); margin-bottom:4px;">کتاب‌های امانتی من</div>
+            <div style="font-size:2rem; font-weight:900; color:#fff; line-height:1;">۲</div>
+          </div>
+          <div class="pb-chip">امانتی‌های فعال</div>
+          <div class="pb-row" style="flex-direction:column; align-items:flex-start; gap:6px;">
+            <div style="display:flex; align-items:center; gap:8px; width:100%;">
+              <div class="pb-row-icon">📗</div>
+              <div class="pb-row-text">
+                <div class="t">شازده کوچولو</div>
+                <div class="s">بازگشت: ۱۴۰۴/۱۲/۱۰</div>
+              </div>
+            </div>
+            <span class="pb-badge active" style="margin-right:40px;">۵ روز مانده</span>
+          </div>
+          <div class="pb-row" style="flex-direction:column; align-items:flex-start; gap:6px;">
+            <div style="display:flex; align-items:center; gap:8px; width:100%;">
+              <div class="pb-row-icon">📕</div>
+              <div class="pb-row-text">
+                <div class="t">کیمیاگر</div>
+                <div class="s">بازگشت: ۱۴۰۴/۱۱/۲۵</div>
+              </div>
+            </div>
+            <span class="pb-badge due" style="margin-right:40px;">فردا موعد دارد</span>
+          </div>
+          <div style="background:#fef9c3; border-radius:10px; padding:10px 12px; font-size:0.68rem; color:#92400e; font-weight:600;">
+            🔔 فردا موعد بازگشت کیمیاگر است
+          </div>
+        </div>
+      </div>
+
+      <!-- right: membership -->
+      <div class="phone side right">
+        <div class="ph" style="background:#0a0a0a;">
+          <span>🪪</span>
+          <span>عضویت من</span>
+        </div>
+        <div class="pb">
+          <div style="background:#0a0a0a; border-radius:12px; padding:16px; text-align:center;">
+            <div style="font-size:0.62rem; color:rgba(255,255,255,0.35); margin-bottom:6px;">وضعیت عضویت</div>
+            <div style="font-size:0.9rem; font-weight:700; color:#4ade80;">● فعال</div>
+          </div>
+          <div class="pb-row">
+            <div class="pb-row-icon">📊</div>
+            <div class="pb-row-text">
+              <div class="t">کتاب‌های خوانده‌شده</div>
+              <div class="s">این سال تحصیلی: ۷</div>
+            </div>
+          </div>
+          <div class="pb-row">
+            <div class="pb-row-icon">⏱️</div>
+            <div class="pb-row-text">
+              <div class="t">میانگین مدت امانت</div>
+              <div class="s">۸ روز</div>
+            </div>
+          </div>
+          <div class="pb-chip" style="background:#0a0a0a; font-size:0.7rem;">امانت کتاب جدید</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== REMINDER ===== -->
+<section class="reminder-section">
+  <span class="label-tag">۰۰۵ — یادآوری هوشمند</span>
+  <h2 class="feat-title light">هیچ کتابی<br>فراموش نمی‌شود</h2>
+
+  <div class="reminder-card">
+    <div class="reminder-header">
+      <div class="reminder-header-icon">🔔</div>
+      <div>
+        <h3>سیستم یادآوری گیوه</h3>
+        <p>اعلان‌های هوشمند بر اساس تاریخ بازگشت</p>
+      </div>
+    </div>
+    <div class="reminder-body">
+      <div class="notif-item">
+        <div class="notif-dot" style="background:#4ade80; margin-top:5px;"></div>
+        <div>
+          <div class="t">یادآوری ۳ روز قبل از موعد</div>
+          <div class="s">۳ روز قبل از موعد بازگشت، گیوه یک اعلان دوستانه در اپ نمایش می‌دهد تا دانش‌آموز برای بازگشت کتاب آماده شود.</div>
+        </div>
+      </div>
+      <div class="notif-item">
+        <div class="notif-dot" style="background:#fbbf24; margin-top:5px;"></div>
+        <div>
+          <div class="t">یادآوری روز آخر</div>
+          <div class="s">در روز موعد بازگشت، یک اعلان فوری نمایش داده می‌شود. رئیس کتابخانه نیز از طریق پنل مدیریت مطلع می‌شود.</div>
+        </div>
+      </div>
+      <div class="notif-item">
+        <div class="notif-dot" style="background:#f87171; margin-top:5px;"></div>
+        <div>
+          <div class="t">هشدار تأخیر</div>
+          <div class="s">اگر کتاب بعد از موعد بازنگشت، گیوه به دانش‌آموز، والدین (از طریق کراوات) و مدیریت اطلاع می‌دهد.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ADMIN PANEL ===== -->
+<section class="panel-section">
+  <div class="panel-inner">
+    <div class="feat-label">۰۰۶ — پنل مدیریت</div>
+    <h2 class="feat-title">همه چیز زیر نظر<br>رئیس کتابخانه</h2>
+
+    <div class="panel-mockup">
+      <div class="panel-topbar">
+        <div class="panel-topbar-title">
+          <span>📚</span>
+          <span>پنل مدیریت گیوه</span>
+        </div>
+        <div class="panel-topbar-actions">
+          <button class="panel-btn ghost">گزارش</button>
+          <button class="panel-btn primary">+ افزودن کتاب</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="panel-stat">
+          <div class="lbl">کل کتاب‌ها</div>
+          <div class="val">۳۴۷</div>
+          <div class="chg up">↑ ۱۲ کتاب جدید این ماه</div>
+        </div>
+        <div class="panel-stat">
+          <div class="lbl">امانت فعال</div>
+          <div class="val">۸۴</div>
+          <div class="chg warn">⚠ ۶ تا دیرکرد دارند</div>
+        </div>
+        <div class="panel-stat">
+          <div class="lbl">اعضای فعال</div>
+          <div class="val">۱۲۳</div>
+          <div class="chg up">↑ نسبت به ماه قبل</div>
+        </div>
+
+        <div class="panel-table">
+          <div class="pt-header">
+            <span>نام دانش‌آموز</span>
+            <span>عنوان کتاب</span>
+            <span>موعد بازگشت</span>
+            <span>وضعیت</span>
+          </div>
+          <div class="pt-row">
+            <span class="bold">امیر علی قنبری</span>
+            <span>شازده کوچولو</span>
+            <span>۱۴۰۴/۱۲/۱۰</span>
+            <span><span class="pt-status ok">به موقع</span></span>
+          </div>
+          <div class="pt-row">
+            <span class="bold">ماهان نوشادی</span>
+            <span>کیمیاگر</span>
+            <span>۱۴۰۴/۱۱/۲۵</span>
+            <span><span class="pt-status due">فردا</span></span>
+          </div>
+          <div class="pt-row">
+            <span class="bold">حسین اشکوه</span>
+            <span>بینوایان</span>
+            <span>۱۴۰۴/۱۱/۱۸</span>
+            <span><span class="pt-status late">دیرکرد</span></span>
+          </div>
+          <div class="pt-row">
+            <span class="bold">علی رضایی</span>
+            <span>پیرمرد و دریا</span>
+            <span>۱۴۰۴/۱۲/۰۵</span>
+            <span><span class="pt-status ok">به موقع</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ASTIN BRIDGE ===== -->
+<section class="bridge-section">
+  <div class="bridge-inner">
+    <span class="label-tag" style="display:block; text-align:center;">۰۰۷ — اتصال به آستین</span>
+    <h2>گیوه بخشی از<br>اکوسیستم آستین است</h2>
+    <p>
+      گیوه مستقیماً با نرم‌افزار اصلی آستین و سرور مرکزی مرتبط است.
+      هر دانش‌آموز با همان تگ NFC که برای حضور و غیاب استفاده می‌کند
+      در کتابخانه هم شناسایی می‌شود.
+    </p>
+
+    <div class="bridge-row">
+      <div class="b-node">
+        <span class="ico">🏷️</span>
+        <div class="nm">تگ NFC</div>
+        <div class="dc">در لباس دانش‌آموز</div>
+      </div>
+      <div class="b-arrow">←</div>
+      <div class="b-node">
+        <span class="ico">📡</span>
+        <div class="nm">سرور آستین</div>
+        <div class="dc">پردازش مرکزی</div>
+      </div>
+      <div class="b-arrow">←</div>
+      <div class="b-node">
+        <span class="ico">📚</span>
+        <div class="nm">گیوه</div>
+        <div class="dc">کتابخانه هوشمند</div>
+      </div>
+      <div class="b-arrow">←</div>
+      <div class="b-node">
+        <span class="ico">📱</span>
+        <div class="nm">آستین</div>
+        <div class="dc">نرم‌افزار دانش‌آموز</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-logo">گیوه</div>
+  <div class="footer-sub">امیر حسین اخضری & امیر محمد ریاحی — پاییز و زمستان ۱۴۰۴</div>
+  <div class="footer-eco">
+    <a href="/">
+    <span class="footer-app">آستین</span>
+  </a>
+
+    <span class="footer-sep">·</span>
+  <a href="/coat">
+      <span class="footer-app">کُت</span>
+  </a>
+    <span class="footer-sep">·</span>
+    <a href="/keravat">
+    <span class="footer-app">کراوات</span>
+  </a>
+
+    <span class="footer-sep">·</span>
+    <a href="/giveh">
+    <span class="footer-app">گیوه</span>
+    </a>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((el) => {
+      if (el.isIntersecting) {
+        setTimeout(() => el.target.classList.add('visible'), Number(el.target.dataset.delay || 0));
+        io.unobserve(el.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll(
+    '.intro p, .feat-card, .step-card, .phone, .reminder-card, .panel-mockup, .b-node'
+  ).forEach((el, i) => {
+    el.dataset.delay = (i % 5) * 80;
+    io.observe(el);
+  });
+</script>
+</body>
+</html>

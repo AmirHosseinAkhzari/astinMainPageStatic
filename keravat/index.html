@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>کراوات — ارتباط هوشمند با مدرسه</title>
+     <link rel="icon" href="./keravat.svg" type="image/x-icon">
+
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;800;900&display=swap" rel="stylesheet"> -->
+  <style>
+    :root {
+      --red: #C0191F;
+      --red-dark: #8B0E12;
+      --red-light: #E8383E;
+      --cream: #FDF8F5;
+      --white: #ffffff;
+      --gray: #6B6B6B;
+      --light-gray: #F5F0ED;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        @font-face {
+
+  font-family: "Vazirmatn";
+
+  src: url("./Vazir-Bold.ttf") format("truetype");
+
+  font-weight: 100 900;
+
+  font-style: normal;
+
+}
+    body {
+      font-family: 'Vazirmatn', sans-serif;
+      background: var(--cream);
+      color: #1a1a1a;
+      overflow-x: hidden;
+    }
+
+
+
+
+    /* ====== HERO ====== */
+    .hero {
+      min-height: 100vh;
+      background: var(--red);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+      padding: 60px 20px;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -120px; right: -120px;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -80px;
+      width: 350px; height: 350px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.08);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      padding: 8px 22px;
+      border-radius: 100px;
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.2s forwards;
+    }
+
+    .hero-logo {
+      width: 100px; height: 100px;
+      margin: 0 auto 32px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.4s forwards;
+    }
+
+    .hero-logo svg {
+      width: 100%; height: 100%;
+      filter: drop-shadow(0 8px 24px rgba(0,0,0,0.3));
+    }
+
+    .hero h1 {
+      font-size: clamp(3.5rem, 10vw, 7rem);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.5s forwards;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.1rem, 3vw, 1.5rem);
+      color: rgba(255,255,255,0.8);
+      font-weight: 300;
+      margin-top: 16px;
+      max-width: 500px;
+      line-height: 1.7;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.7s forwards;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 1.2s forwards;
+    }
+
+    .hero-scroll span {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+    }
+
+    .scroll-dot {
+      width: 6px; height: 6px;
+      background: rgba(255,255,255,0.5);
+      border-radius: 50%;
+      animation: bounce 1.4s ease infinite;
+    }
+
+    /* ====== INTRO SECTION ====== */
+    .intro {
+      padding: 100px 24px;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .intro p {
+      font-size: clamp(1.2rem, 2.5vw, 1.55rem);
+      font-weight: 300;
+      line-height: 1.9;
+      color: #333;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.7s ease;
+    }
+
+    .intro p.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .intro strong {
+      color: var(--red);
+      font-weight: 800;
+    }
+
+    /* ====== FEATURES GRID ====== */
+    .features-section {
+      background: var(--red);
+      padding: 100px 24px;
+    }
+
+    .features-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .section-label.dark {
+      color: var(--red);
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 60px;
+    }
+
+    .section-title.dark {
+      color: #1a1a1a;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .feature-card {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 20px;
+      padding: 36px 28px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.6s ease;
+    }
+
+    .feature-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .feature-card:hover {
+      background: rgba(255,255,255,0.16);
+      transform: translateY(-4px);
+    }
+
+    .feature-icon {
+      width: 52px; height: 52px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+    }
+
+    .feature-card h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .feature-card p {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.75;
+    }
+
+    /* ====== HOW IT WORKS ====== */
+    .how-section {
+      padding: 100px 24px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 60px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 28px;
+      padding: 36px 0;
+      border-bottom: 1px solid #E8E0DA;
+      opacity: 0;
+      transform: translateX(30px);
+      transition: all 0.6s ease;
+    }
+
+    .step.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .step:last-child { border-bottom: none; }
+
+    .step-num {
+      width: 52px; height: 52px;
+      background: var(--red);
+      color: #fff;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    .step-content h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #1a1a1a;
+    }
+
+    .step-content p {
+      font-size: 0.97rem;
+      color: var(--gray);
+      line-height: 1.8;
+    }
+
+    /* ====== STATS ====== */
+    .stats-section {
+      background: var(--light-gray);
+      padding: 80px 24px;
+    }
+
+    .stats-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      text-align: center;
+    }
+
+    .stat {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease;
+    }
+
+    .stat.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .stat-num {
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: var(--red);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.95rem;
+      color: var(--gray);
+      margin-top: 10px;
+      font-weight: 500;
+    }
+
+    /* ====== SCREENS MOCKUP ====== */
+    .screens-section {
+      padding: 100px 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .screens-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 60px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .phone-frame {
+      background: #fff;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.6s ease;
+      aspect-ratio: 9/18;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .phone-frame.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+        .footer-eco {
+      display: flex; gap: 14px;
+      justify-content: center; flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    
+    .phone-frame:nth-child(2) {
+      transform: translateY(20px) scale(1.05);
+    }
+
+    .phone-frame:nth-child(2).visible {
+      transform: translateY(0px) scale(1.08);
+    }
+
+    .phone-header {
+      background: var(--red);
+      padding: 16px 14px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .phone-header .back {
+      font-size: 1rem;
+      opacity: 0.8;
+    }
+
+    .phone-body {
+      flex: 1;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background: #fafafa;
+    }
+
+    .mock-stat-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .mock-stat {
+      flex: 1;
+      background: #fff;
+      border-radius: 12px;
+      padding: 10px 8px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    .mock-stat .num {
+      font-size: 1.2rem;
+      font-weight: 900;
+      color: #1a1a1a;
+    }
+
+    .mock-stat .lbl {
+      font-size: 0.6rem;
+      color: var(--gray);
+    }
+
+    .mock-stat.green .num { color: #16A34A; }
+    .mock-stat.red .num { color: var(--red); }
+    .mock-stat.yellow .num { color: #D97706; }
+
+    .mock-entry {
+      background: #fff;
+      border-radius: 12px;
+      padding: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .mock-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .mock-entry-text {
+      flex: 1;
+    }
+
+    .mock-entry-text .date {
+      font-size: 0.65rem;
+      color: var(--gray);
+    }
+
+    .mock-entry-text .time {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+
+    /* ====== CTA ====== */
+    .cta-section {
+      background: var(--red-dark);
+      padding: 100px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: 'کراوات';
+      position: absolute;
+      font-size: 20rem;
+      font-weight: 900;
+      color: rgba(255,255,255,0.03);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .cta-section h2 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .cta-section p {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.7);
+      max-width: 500px;
+      margin: 0 auto 48px;
+      line-height: 1.8;
+    }
+
+    .cta-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .bazaar-btn {
+      display: inline-block;
+      margin-top: 40px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .bazaar-btn:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+
+    .bazaar-btn img {
+      height: 56px;
+      border-radius: 12px;
+    }
+
+    .cta-tag {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      padding: 10px 22px;
+      border-radius: 100px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    /* ====== FOOTER ====== */
+    footer {
+      background: #111;
+      padding: 48px 24px;
+      text-align: center;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.85rem;
+    }
+
+    footer strong {
+      color: var(--red);
+    }
+
+    /* ====== ANIMATIONS ====== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(6px); }
+    }
+
+    /* ====== RESPONSIVE ====== */
+    @media (max-width: 600px) {
+      .screens-grid { grid-template-columns: repeat(2, 1fr); }
+      .phone-frame:nth-child(3) { display: none; }
+    }
+    img[src$="./keravat.svg"] {
+        filter: brightness(0) saturate(100%) invert(100%);
+
+}
+a{
+  text-decoration: none;
+  color: gray;
+}
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">بخشی از اکوسیستم آستین</div>
+
+  <div class="hero-logo">
+    <!-- <svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M50 5 L72 20 L72 60 C72 80 60 95 50 105 C40 95 28 80 28 60 L28 20 Z" fill="white" opacity="0.9"/>
+      <ellipse cx="50" cy="28" rx="10" ry="10" fill="#C0191F"/>
+      <path d="M50 38 L50 75" stroke="#C0191F" stroke-width="5" stroke-linecap="round"/>
+      <path d="M50 75 L44 85" stroke="#C0191F" stroke-width="4" stroke-linecap="round"/>
+      <path d="M50 75 L56 85" stroke="#C0191F" stroke-width="4" stroke-linecap="round"/>
+    </svg> -->
+    <img src="./keravat.svg" alt="">
+  </div>
+
+  <h1>کراوات</h1>
+  <p class="hero-subtitle">ارتباط هوشمند والدین با مدرسه — بدون تماس، بدون نگرانی</p>
+
+  <div class="hero-scroll">
+    <span>بیشتر بدانید</span>
+    <div class="scroll-dot"></div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="intro">
+  <p>
+    کراوات یک <strong>نرم‌افزار اختصاصی برای والدین</strong> است که به آن‌ها امکان می‌دهد
+    حضور و غیاب فرزندشان را <strong>لحظه‌ای و بدون تماس با مدرسه</strong> پیگیری کنند.
+    هر تأخیر، هر غیبت، هر حضور — همه در دستان شماست.
+  </p>
+</section>
+
+<!-- FEATURES -->
+<section class="features-section">
+  <div class="features-inner">
+    <div class="section-label">قابلیت‌های کراوات</div>
+    <h2 class="section-title">همه چیز را<br>در یک نگاه ببینید</h2>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">📍</div>
+        <h3>ثبت لحظه‌ای حضور</h3>
+        <p>به محض ورود فرزندتان به مدرسه، اطلاعات حضور او بلافاصله در کراوات نمایش داده می‌شود.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⏱️</div>
+        <h3>پیگیری تأخیرها</h3>
+        <p>اگر دانش‌آموزی دیرتر از ساعت مقرر وارد شود، شما بلافاصله آگاه می‌شوید و می‌توانید دلیل آن را ثبت کنید.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📩</div>
+        <h3>ارسال دلیل غیبت</h3>
+        <p>به‌جای تماس با دفتر مدرسه، مستقیماً از طریق کراوات دلیل غیبت یا تأخیر فرزندتان را توضیح دهید.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>تاریخچه کامل</h3>
+        <p>تمام سوابق حضور و غیاب فرزندتان را در یک صفحه مرتب و واضح مشاهده کنید.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>حریم خصوصی امن</h3>
+        <p>هر والد فقط به اطلاعات فرزند خود دسترسی دارد. اطلاعات شما کاملاً محرمانه است.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔗</div>
+        <h3>اتصال مستقیم به مدیریت</h3>
+        <p>پیام‌های شما مستقیماً به نرم‌افزار کُت مدیران مدرسه فرستاده می‌شود. بدون واسطه.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section">
+  <div class="section-label dark">چطور کار می‌کند؟</div>
+  <h2 class="section-title dark">سه قدم ساده</h2>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">۱</div>
+      <div class="step-content">
+        <h3>فرزندتان وارد مدرسه می‌شود</h3>
+        <p>تگ NFC دوخته‌شده در آستین لباس دانش‌آموز توسط کیوسک آستین خوانده می‌شود و حضور او ثبت می‌گردد.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">۲</div>
+      <div class="step-content">
+        <h3>شما فوری مطلع می‌شوید</h3>
+        <p>اطلاعات حضور، ساعت ورود و وضعیت (به موقع / تأخیر / غیبت) در اپ کراوات شما نمایش داده می‌شود.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">۳</div>
+      <div class="step-content">
+        <h3>در صورت نیاز، پاسخ بدهید</h3>
+        <p>اگر فرزندتان غیبت یا تأخیر داشت، دلیل آن را مستقیماً در اپ بنویسید. مدیریت مدرسه بلافاصله مطلع می‌شود.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-section">
+  <div class="stats-inner">
+    <div class="stat">
+      <div class="stat-num">۰</div>
+      <div class="stat-label">تماس اضافی با دفتر مدرسه</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">۲۴/۷</div>
+      <div class="stat-label">دسترسی به سوابق فرزندتان</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">ثانیه‌ای</div>
+      <div class="stat-label">سرعت ثبت و نمایش اطلاعات</div>
+    </div>
+  </div>
+</section>
+
+<!-- PHONE MOCKUPS -->
+<section class="screens-section">
+  <div class="section-label dark">رابط کاربری</div>
+  <h2 class="section-title dark">طراحی شده برای سادگی</h2>
+
+  <div class="screens-grid">
+    <!-- Phone 1: delay form -->
+    <div class="phone-frame">
+      <div class="phone-header">
+        <span class="back">←</span>
+        <span>کراوات</span>
+      </div>
+      <div class="phone-body">
+        <div style="background:#F59E0B; border-radius:12px; padding:14px; color:#fff; font-size:0.75rem; font-weight:700; text-align:center;">
+          دیرکرد
+        </div>
+        <div style="background:#fff; border-radius:12px; padding:12px; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+          <div style="font-size:0.7rem; color:#999; margin-bottom:6px;">دلیل دیرکرد</div>
+          <div style="font-size:0.75rem; color:#444; line-height:1.6;">ترافیک سنگین صبحگاهی...</div>
+        </div>
+        <div style="background:var(--red); border-radius:12px; padding:12px; color:#fff; font-size:0.8rem; font-weight:700; text-align:center;">
+          ✓ ارسال
+        </div>
+      </div>
+    </div>
+
+    <!-- Phone 2: main view -->
+    <div class="phone-frame">
+      <div class="phone-header">
+        <span style="font-size:1rem;">👤</span>
+        <span>کراوات</span>
+      </div>
+      <div class="phone-body">
+        <div class="mock-stat-row">
+          <div class="mock-stat red"><div class="num">۰</div><div class="lbl">غیبت</div></div>
+          <div class="mock-stat green"><div class="num">۱۲</div><div class="lbl">حضور</div></div>
+          <div class="mock-stat yellow"><div class="num">۱</div><div class="lbl">دیرکرد</div></div>
+        </div>
+        <div class="mock-entry">
+          <div class="mock-dot" style="background:#F59E0B;"></div>
+          <div class="mock-entry-text">
+            <div class="time">۰۸:۳۱</div>
+            <div class="date">ورود — ۱۴۰۴/۱۱/۸</div>
+          </div>
+        </div>
+        <div class="mock-entry">
+          <div class="mock-dot" style="background:#16A34A;"></div>
+          <div class="mock-entry-text">
+            <div class="time">۰۷:۲۱</div>
+            <div class="date">ورود — ۱۴۰۴/۱۱/۷</div>
+          </div>
+        </div>
+        <div class="mock-entry">
+          <div class="mock-dot" style="background:#16A34A;"></div>
+          <div class="mock-entry-text">
+            <div class="time">۰۷:۱۸</div>
+            <div class="date">ورود — ۱۴۰۴/۱۱/۶</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phone 3: options -->
+    <div class="phone-frame">
+      <div class="phone-header">
+        <span class="back">←</span>
+        <span>کراوات</span>
+      </div>
+      <div class="phone-body">
+        <div style="background:#fff; border-radius:12px; padding:12px; box-shadow:0 2px 8px rgba(0,0,0,0.06); font-size:0.7rem; text-align:center; font-weight:600; color:#444; border:1px solid #eee;">گزینه‌ها</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px;">
+          <div style="background:#16A34A; border-radius:10px; padding:10px 4px; text-align:center; color:#fff; font-size:0.6rem; font-weight:700;">حضور<br>غیاب</div>
+          <div style="background:#ddd; border-radius:10px; padding:10px 4px; text-align:center; color:#999; font-size:0.55rem;">به زودی</div>
+          <div style="background:#ddd; border-radius:10px; padding:10px 4px; text-align:center; color:#999; font-size:0.55rem;">به زودی</div>
+          <div style="background:#ddd; border-radius:10px; padding:10px 4px; text-align:center; color:#999; font-size:0.55rem;">به زودی</div>
+          <div style="background:#ddd; border-radius:10px; padding:10px 4px; text-align:center; color:#999; font-size:0.55rem;">به زودی</div>
+          <div style="background:#ddd; border-radius:10px; padding:10px 4px; text-align:center; color:#999; font-size:0.55rem;">به زودی</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>آرامش خاطر،<br>در دستان شما</h2>
+  <p>با کراوات، هر لحظه از روز می‌دانید فرزندتان در مدرسه است و کارها به خوبی پیش می‌رود.</p>
+
+  <div class="cta-tags">
+    <span class="cta-tag">🎓 بخشی از پروژه آستین</span>
+    <span class="cta-tag">📱 اپ موبایل</span>
+    <span class="cta-tag">🔴 طراحی‌شده برای والدین</span>
+    <span class="cta-tag">🏫 مخصوص مدارس هوشمند</span>
+  </div>
+
+  <a href="https://cafebazaar.ir/app/com.example.keravat" target="_blank" class="bazaar-btn">
+    <img src="https://s.cafebazaar.ir/2/images/badge-new.png" alt="دریافت از کافه‌بازار">
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">گیوه</div>
+  <div class="footer-sub">امیر حسین اخضری & امیر محمد ریاحی — پاییز و زمستان ۱۴۰۴</div>
+  <div class="footer-eco">
+    <a href="/">
+    <span class="footer-app">آستین</span>
+  </a>
+
+    <span class="footer-sep">·</span>
+  <a href="/coat">
+      <span class="footer-app">کُت</span>
+  </a>
+    <span class="footer-sep">·</span>
+    <a href="/keravat">
+    <span class="footer-app">کراوات</span>
+  </a>
+
+    <span class="footer-sep">·</span>
+    <a href="/giveh">
+    <span class="footer-app">گیوه</span>
+    </a>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, entry.target.dataset.delay || 0);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.feature-card, .step, .stat, .phone-frame, .intro p').forEach((el, i) => {
+    el.dataset.delay = (i % 4) * 100;
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>

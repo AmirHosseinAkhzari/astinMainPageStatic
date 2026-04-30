@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Epic File Uploader</title>
+     <link rel="icon" href="./astin.svg" type="image/x-icon">
+    <!-- Link to Vazir font will go here -->
+    <style>
+        /* Quick CSS for the vibe - you'll expand this in styles.css */
+
+
+                @font-face {
+
+  font-family: "Vazirmatn";
+
+  src: url("./Vazir-Bold.ttf") format("truetype");
+
+  font-weight: 100 900;
+
+  font-style: normal;
+
+}
+
+
+        body {
+            background-color: black; /* #10 Background */
+            color: white;
+            font-family: 'Vazirmatn', sans-serif; /* #8 Vazir Font */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            position: relative; /* For the grid overlay */
+            overflow: hidden; /* To contain the grid */
+        }
+
+        /* #9 Grey Grid Background */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(255, 255, 255, 0.05), /* Lighter grey */
+                rgba(255, 255, 255, 0.05) 1px,
+                transparent 1px,
+                transparent 50px /* Adjust grid spacing */
+            );
+            opacity: 0.5; /* Low opacity */
+            pointer-events: none; /* Doesn't interfere with clicks */
+            z-index: 0; /* Behind everything else */
+        }
+
+        .header {
+            position: absolute;
+            top: 20px;
+            right: 20px; /* #4 Top right corner */
+            display: flex;
+            align-items: center;
+        }
+
+
+
+        .header-text {
+            font-size: 3.2em; /* #7 Text next to logo */
+            font-weight: bold;
+        }
+
+        .content {
+            text-align: center;
+            z-index: 1; /* Ensure content is above the grid */
+            padding: 50px 20px;
+        }
+
+        .main-title {
+            font-size: 4em; /* #5 Big text */
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .sub-text {
+            font-size: 1.5em; /* #5 Smaller text */
+            opacity: 0.8;
+            margin-bottom: 40px;
+        }
+
+        .file-upload-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .file-select-button {
+            background-color: white; /* #6 White button */
+            color: black; /* Text color */
+            padding: 20px 40px;
+            font-size: 1.8em; /* #6 Big button */
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-bottom: 20px;
+            z-index: 2; /* Above grid */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Subtle shadow */
+        }
+
+        .file-select-button:hover {
+            background-color: #f0f0f0; /* Slightly off-white on hover */
+            transform: translateY(-2px); /* Slight lift effect */
+        }
+
+        #fileInput {
+            display: none; /* Hide the default file input */
+        }
+
+        .progress-container {
+            width: 100%;
+            max-width: 500px; /* Limit width */
+            background-color: rgba(255, 255, 255, 0.1); /* Darker background for progress bar */
+            border-radius: 10px;
+            margin-top: 20px;
+            overflow: hidden; /* Contain the progress bar */
+            height: 30px; /* Make it noticeable */
+            display: none; /* Hidden by default, shown when upload starts */
+            z-index: 2;
+        }
+
+
+        .progress-bar {
+            height: 100%;
+            width: 0%; /* Starts at 0% */
+            background-color: #4CAF50; /* Green for progress */
+            text-align: center; /* Center text inside */
+            line-height: 30px; /* Center vertically */
+            color: white;
+            transition: width 0.3s ease-out; /* Smooth transition for progress */
+        }
+
+        .status-message {
+            margin-top: 20px;
+            font-size: 1.4em;
+            font-weight: bold;
+            z-index: 2;
+            min-height: 30px; /* Prevent layout shift */
+        }
+        .status-message.success {
+            color: #4CAF50; /* Green */
+        }
+        .status-message.error {
+            color: #f44336; /* Red */
+        }
+        .status-message.pending {
+            color: white; /* Neutral color for pending */
+        }
+            img[src$="./astin.svg"] {
+        filter: brightness(0) saturate(100%) invert(100%);
+        
+}
+
+
+    </style>
+</head>
+<body>
+
+    <header class="header">
+
+        <div class="logo">
+            <img src="./astin.svg" >
+        </div> <!-- Your logo will go here -->
+    </header>
+
+    <main class="content">
+        <h1 class="main-title">فایلت رو آپلود کن</h1> <!-- #5 Big text -->
+        <p class="sub-text">از این قسمت فایلت رو آپلود کن تا به دست ما برسه </p> <!-- #5 Smaller text -->
+
+        <div class="file-upload-container">
+            <button class="file-select-button" onclick="document.getElementById('fileInput').click()">
+                Choose File <!-- #6 Big white button -->
+            </button>
+            <input type="file" id="fileInput" accept="/*" /> <!-- #6 Single file upload, accept="/*" means any file type, you can be more specific like "image/*" or ".pdf" -->
+        </div>
+
+        <div class="progress-container" id="progressBarContainer">
+            <div class="progress-bar" id="progressBar">0%</div>
+        </div>
+
+        <div class="status-message" id="statusMessage"></div> <!-- #1 Status message, #2 Progress %, #3 Error -->
+    </main>
+
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const uploadButton = document.querySelector('.file-select-button');
+        const progressBar = document.getElementById('progressBar');
+        const progressBarContainer = document.getElementById('progressBarContainer');
+        const statusMessage = document.getElementById('statusMessage');
+
+        let selectedFile = null; // To hold the file
+
+        // Function to handle file selection
+        function handleFileSelect(event) {
+            selectedFile = event.target.files[0]; // Get the first (and only) file
+
+            if (selectedFile) {
+                // Change button text and style to indicate selection
+                uploadButton.textContent = `Upload`;
+                uploadButton.style.backgroundColor = '#e0e0e0'; // Visually indicate selection
+                uploadButton.style.color = '#333';
+                statusMessage.textContent = `رو دوباره بزن upload برای ارسال دکمه`; // Prompt user to click again
+                statusMessage.className = 'status-message pending';
+                progressBarContainer.style.display = 'none'; // Hide progress bar until upload starts
+                
+                // Change the button's purpose: now it's for uploading
+                uploadButton.onclick = triggerUpload; // Assign the upload function to the click event
+                uploadButton.style.cursor = 'pointer'; // Ensure it looks clickable
+
+            } else {
+                // Reset if selection is cleared or canceled
+                resetUI();
+            }
+        }
+
+        // Function to reset UI to initial state
+        function resetUI() {
+            selectedFile = null;
+            uploadButton.textContent = 'Choose File';
+            uploadButton.style.backgroundColor = 'white';
+            uploadButton.style.color = 'black';
+            statusMessage.textContent = '';
+            statusMessage.className = 'status-message pending';
+            progressBarContainer.style.display = 'none';
+            fileInput.value = ''; // Clear the input value
+            uploadButton.onclick = () => fileInput.click(); // Revert button to opening file picker
+            uploadButton.style.cursor = 'pointer';
+        }
+
+        // --- Step 2: Actual Uploading to API ---
+        async function triggerUpload() { // Made async to use await
+            if (!selectedFile) {
+                statusMessage.textContent = 'Please select a file first!';
+                statusMessage.className = 'status-message error';
+                return;
+            }
+
+            // Show progress bar and reset message
+            progressBarContainer.style.display = 'block';
+            progressBar.style.width = '0%';
+            progressBar.textContent = '0%';
+            statusMessage.textContent = `Uploading ${selectedFile.name}...`;
+            statusMessage.className = 'status-message pending';
+
+            const API_URL = 'https://astinapp.ir/api/drive/upload'; // Your API endpoint
+
+            // Prepare the file for upload using FormData
+            const formData = new FormData();
+            // The 'name' and 'value' should match what your backend expects.
+            // For Express's `upload.single("file")`, the field name is 'file'.
+            formData.append('file', selectedFile); 
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    body: formData,
+                    // Do NOT set 'Content-Type' header for FormData, the browser sets it correctly with boundary
+                });
+
+                // --- Handling Progress (Advanced) ---
+                // For real-time progress, you'd typically use XMLHttpRequest (XHR)
+                // because fetch() doesn't easily expose upload progress.
+                // If you need precise progress, you'd need to refactor this part using XHR.
+                // For now, this will just show 100% after the response is received.
+
+                // Get the response JSON
+                const result = await response.json();
+
+                // --- Update UI based on API Response ---
+                if (result.code === 200) {
+                    statusMessage.textContent = result.message; // #1 Success message
+                    statusMessage.className = 'status-message success';
+                    resetUI(); // Reset everything after successful upload
+                } else {
+                    statusMessage.textContent = result.message || "An unknown error occurred."; // #3 Error message
+                    statusMessage.className = 'status-message error';
+                    // Keep file selected, allow retry by clicking the button again
+                    uploadButton.textContent = `Retry: ${selectedFile.name}`; 
+                    uploadButton.style.cursor = 'pointer'; 
+                    progressBarContainer.style.display = 'none'; // Hide progress bar on error
+                }
+
+            } catch (error) {
+                // Handle network errors or issues parsing the response
+                console.error('Upload failed:', error);
+                statusMessage.textContent = `Upload failed: ${error.message || 'Network error'}`; // #3 Error message
+                statusMessage.className = 'status-message error';
+                uploadButton.textContent = `Retry: ${selectedFile.name}`;
+                uploadButton.style.cursor = 'pointer'; 
+                progressBarContainer.style.display = 'none';
+            } finally {
+                // Set progress to 100% visually if upload finishes (simulated or real)
+                // This part might need adjustment based on actual progress implementation
+                progressBar.style.width = '100%';
+                progressBar.textContent = '100%';
+            }
+        }
+
+        // --- Initial Setup ---
+        uploadButton.onclick = () => fileInput.click();
+        fileInput.addEventListener('change', handleFileSelect);
+
+    </script>
+
+
+
+</body>
+</html>

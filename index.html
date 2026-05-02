@@ -1,425 +1,202 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- ══════════════════════════════════════════
-       SEO — Primary Meta Tags
-  ══════════════════════════════════════════ -->
-  <title>آستین — سیستم هوشمند حضور و غیاب مدرسه با تگ NFC</title>
-  <meta name="description"
-        content="آستین یک سیستم هوشمند مدرسه است که با تگ‌های NFC زیردوزی حضور و غیاب دانش‌آموزان را در کمتر از یک ثانیه ثبت می‌کند. شامل نرم‌افزارهای کُت، کراوات و گیوه برای مدیران، معلمان، والدین و دانش‌آموزان.">
-  <meta name="keywords"
-        content="سیستم حضور و غیاب مدرسه، هوشمندسازی مدرسه، NFC مدرسه، تگ NFC دانش آموز، نرم افزار مدرسه هوشمند، آستین، کیوسک مدرسه، حضور و غیاب خودکار">
-  <meta name="author" content="امیر حسین اخضری و امیر محمد ریاحی">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://astinapp.ir/">
-
-  <!-- ══════════════════════════════════════════
-       SEO — Open Graph (لینک‌دهی در شبکه‌های اجتماعی)
-  ══════════════════════════════════════════ -->
-  <meta property="og:type"        content="website">
-  <meta property="og:url"         content="https://astinapp.ir/">
-  <meta property="og:title"       content="آستین — سیستم هوشمند حضور و غیاب مدرسه">
-  <meta property="og:description" content="هوشمندسازی مدرسه با تگ‌های NFC. ثبت حضور در کمتر از یک ثانیه. نرم‌افزارهای اختصاصی برای مدیران، معلمان، والدین و دانش‌آموزان.">
-  <meta property="og:image"       content="https://astinapp.ir/static/images/og-image.png">
-  <meta property="og:locale"      content="fa_IR">
-  <meta property="og:site_name"   content="آستین">
-
-  <!-- ══════════════════════════════════════════
-       SEO — Structured Data (JSON-LD)
-  ══════════════════════════════════════════ -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "آستین",
-    "alternateName": "Astin Smart School",
-    "url": "https://astinapp.ir",
-    "description": "سیستم هوشمند مدرسه برای ثبت حضور و غیاب خودکار دانش‌آموزان با تگ‌های NFC زیردوزی. شامل کیوسک سخت‌افزاری و چهار نرم‌افزار اختصاصی.",
-    "applicationCategory": "EducationApplication",
-    "operatingSystem": "Android, iOS, Web",
-    "inLanguage": "fa",
-    "author": {
-      "@type": "Person",
-      "name": "امیر حسین اخضری"
-    },
-    "creator": [
-      { "@type": "Person", "name": "امیر حسین اخضری" },
-      { "@type": "Person", "name": "امیر محمد ریاحی" }
-    ],
-    "dateCreated": "2024-10-06",
-    "offers": {
-      "@type": "Offer",
-      "availability": "https://schema.org/InStock"
-    }
-  }
-  </script>
-
-  <link rel="icon" href="./static/svgs/astin.svg" type="image/svg+xml">
-
-  <!-- ══════════════════════════════════════════
-       Matomo Analytics
-  ══════════════════════════════════════════ -->
-  <script>
-    var _paq = window._paq = window._paq || [];
-    _paq.push(['trackPageView']);
-    _paq.push(['enableLinkTracking']);
-    (function () {
-      var u = "//matomo-furat2.chbk.dev/";
-      _paq.push(['setTrackerUrl', u + 'matomo.php']);
-      _paq.push(['setSiteId', '1']);
-      var d = document, g = d.createElement('script'),
-          s = d.getElementsByTagName('script')[0];
-      g.async = true; g.src = u + 'matomo.js';
-      s.parentNode.insertBefore(g, s);
-    })();
-  </script>
-
-  <link rel="stylesheet" href="./style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Astin Group | نرم‌افزار جامع مدیریت مدرسه</title>
+  <meta name="description" content="آستین یک نرم‌افزار جامع مدیریت مدرسه است که دانش‌آموزان، معلمان، مدیران و والدین را در یک سیستم یکپارچه متصل می‌کند." />
+  <meta property="og:title" content="Astin Group | نرم‌افزار جامع مدیریت مدرسه" />
+  <meta property="og:description" content="آستین راهکار یکپارچه مدیریت مدرسه؛ از حضور و غیاب هوشمند تا ارتباط موثر بین خانواده و مدرسه." />
+  <meta property="og:image" content="/static/images/og-image.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fa_IR" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-<!-- ═══════════════════════════════════════════════
-     HERO
-═══════════════════════════════════════════════ -->
-<header class="hero">
-  <p class="hero-eyebrow">پروژه آستین — پاییز و زمستان ۱۴۰۴</p>
-
-  <div class="hero-logo">
-    <img src="./static/svgs/astin.svg"
-         alt="لوگوی آستین"
-         width="90" height="90">
-  </div>
-
-  <h1>آستین</h1>
-  <p class="hero-tagline">هوشمندسازی مدرسه از طریق داده</p>
-
-  <div class="hero-divider" aria-hidden="true"></div>
-
-  <nav class="nav-pills" aria-label="بخش‌های صفحه">
-    <a href="#kiosk"    class="nav-pill">کیوسک</a>
-    <a href="#apps"     class="nav-pill">نرم‌افزارها</a>
-    <a href="#timeline" class="nav-pill">مسیر پروژه</a>
-  </nav>
-</header>
-
-<!-- ═══════════════════════════════════════════════
-     INTRO
-═══════════════════════════════════════════════ -->
-<section class="intro" aria-labelledby="intro-heading">
-  <p class="intro-number" id="intro-heading">۰۰۱ — درباره آستین</p>
-  <p>
-    آستین یک سیستم <strong>هوشمند مدرسه</strong> است که با استفاده از
-    <strong>تگ‌های NFC</strong> و نرم‌افزارهای اختصاصی، مدیران، معلمان،
-    والدین و دانش‌آموزان را به هم متصل می‌کند.
-    هدف: <strong>جمع‌آوری، دسته‌بندی و تحلیل داده‌های مدرسه</strong>
-    به ساده‌ترین شکل ممکن.
-  </p>
-</section>
-
-<!-- ═══════════════════════════════════════════════
-     ECOSYSTEM
-═══════════════════════════════════════════════ -->
-<section class="ecosystem" aria-labelledby="ecosystem-heading">
-  <div class="ecosystem-inner">
-    <p class="section-label">اکوسیستم آستین</p>
-    <h2 class="section-title" id="ecosystem-heading">چهار ابزار،<br>یک هدف</h2>
-
-    <div class="apps-grid">
-      <!-- آستین -->
-      <div class="app-card">
-        <span class="app-icon">
-          <img src="./static/svgs/astin.svg" alt="لوگوی آستین" width="48" height="48">
-        </span>
-        <div class="app-name">آستین</div>
-        <div class="app-for">برای دانش‌آموزان</div>
-        <p class="app-desc">نرم‌افزار اصلی. اطلاعات حضور و غیاب، کتابخانه و فعالیت‌های مدرسه.</p>
-      </div>
-
-      <!-- کُت -->
-      <a href="/coat" class="app-card">
-        <span class="app-icon">
-          <img src="./static/svgs/cote.svg" alt="لوگوی کُت" width="48" height="48">
-        </span>
-        <div class="app-name">کُت</div>
-        <div class="app-for">برای مدیران و معلمان</div>
-        <p class="app-desc">مدیریت کامل مدرسه. حضور و غیاب، کلاس‌ها، دانش‌آموزان و سطوح دسترسی.</p>
-        <div class="app-link-hint">مشاهده بیشتر ←</div>
+  <header class="site-header" id="top">
+    <nav class="container nav">
+      <a class="brand" href="#top" aria-label="صفحه اصلی آستین">
+        <img src="/static/svgs/astin.svg" alt="لوگو آستین" />
+        <span>Astin</span>
       </a>
+      <ul class="nav-links">
+        <li><a href="#about">آستین چیست؟</a></li>
+        <li><a href="#why">چرا آستین؟</a></li>
+        <li><a href="#services">سرویس‌ها</a></li>
+        <li><a href="#contact">ارتباط با ما</a></li>
+      </ul>
+      <button class="btn btn-primary nav-cta" data-open-modal>درخواست دمو</button>
+    </nav>
+  </header>
 
-      <!-- کراوات -->
-      <a href="/keravat" class="app-card">
-        <span class="app-icon">
-          <img src="./static/svgs/keravat.svg" alt="لوگوی کراوات" width="48" height="48">
-        </span>
-        <div class="app-name">کراوات</div>
-        <div class="app-for">برای والدین</div>
-        <p class="app-desc">پیگیری لحظه‌ای حضور فرزند. ارسال دلیل غیبت مستقیم به مدیریت.</p>
-        <div class="app-link-hint">مشاهده بیشتر ←</div>
+  <main>
+    <section class="hero section">
+      <div class="container hero-content">
+        <img class="hero-logo" src="/static/svgs/astin.svg" alt="Astin Group" />
+        <h1>Astin Group</h1>
+        <p class="subtitle">یک نرمافزار برای تمام نیازهای مدرسه</p>
+        <a class="btn btn-primary" href="#about">شروع آشنایی</a>
+      </div>
+      <a href="#about" class="scroll-down" aria-label="اسکرول به پایین">
+        <span></span>
       </a>
+    </section>
 
-      <!-- گیوه -->
-      <a href="/giveh" class="app-card">
-        <span class="app-icon">
-          <img src="./static/svgs/geve.svg" alt="لوگوی گیوه" width="48" height="48">
-        </span>
-        <div class="app-name">گیوه</div>
-        <div class="app-for">کتابخانه مدرسه</div>
-        <p class="app-desc">عضویت، امانت کتاب و پنل مدیریت کتابخانه برای مسئولان.</p>
-        <div class="app-link-hint">مشاهده بیشتر ←</div>
-      </a>
+    <section class="section" id="about">
+      <div class="container">
+        <h2>آستین چیست؟</h2>
+        <p>
+          آستین یک نرم‌افزار جامع مدیریت مدرسه است؛ پلتفرمی که تمام اجزای مدرسه را در یک بستر یکپارچه کنار هم قرار می‌دهد.
+          دانش‌آموزان، معلمان، والدین و مدیران می‌توانند اطلاعات موردنیاز خود را سریع، دقیق و متمرکز دریافت و مدیریت کنند.
+        </p>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="why">
+      <div class="container">
+        <h2>چرا آستین؟</h2>
+        <div class="feature-grid three">
+          <article class="card">
+            <h3>کاهش کار دستی</h3>
+            <p>فرآیندهای تکراری مدرسه به‌صورت دیجیتال انجام می‌شود و بار اجرایی تیم کاهش می‌یابد.</p>
+          </article>
+          <article class="card">
+            <h3>دسترسی سریع</h3>
+            <p>اطلاعات آموزشی، مدیریتی و ارتباطی در لحظه و از یک مسیر مشخص در دسترس قرار دارد.</p>
+          </article>
+          <article class="card">
+            <h3>مدیریت یکپارچه</h3>
+            <p>به‌جای چند ابزار جدا، یک سیستم مرکزی برای مدیریت کامل امور مدرسه استفاده می‌کنید.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="benefits">
+      <div class="container">
+        <h2>مزایا</h2>
+        <div class="feature-grid four">
+          <article class="card"><h3>سرعت</h3><p>اجرای سریع‌تر فرآیندها و پاسخ‌گویی بهتر به نیازهای مدرسه.</p></article>
+          <article class="card"><h3>دقت</h3><p>کاهش خطاهای انسانی با ثبت و پردازش سیستماتیک اطلاعات.</p></article>
+          <article class="card"><h3>ارتباط بهتر</h3><p>تعامل موثر و شفاف بین مدرسه، خانواده و کادر آموزشی.</p></article>
+          <article class="card"><h3>کاهش هزینه</h3><p>بهینه‌سازی منابع و زمان با مدیریت متمرکز و هوشمند.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="services">
+      <div class="container service-highlight">
+        <h2>سرویس حضور و غیاب آستین</h2>
+        <p>
+          حضور و غیاب آستین بر پایه NFC طراحی شده و ثبت تردد را هوشمند، خودکار و دقیق انجام می‌دهد.
+          مدیران و والدین می‌توانند وضعیت ورود و خروج را به‌صورت لحظه‌ای دنبال کنند.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="apps">
+      <div class="container">
+        <h2>محصولات مکمل آستین</h2>
+        <div class="apps-grid">
+          <article class="app-card">
+            <img src="/static/svgs/keravat.svg" alt="کراوات" />
+            <h3>کراوات (Parents App)</h3>
+            <p>اپ ویژه والدین برای مشاهده وضعیت تحصیلی، حضور و غیاب و ارتباط ساده با مدرسه.</p>
+            <a class="btn btn-outline" href="/keravat.html">اطلاعات بیشتر</a>
+          </article>
+          <article class="app-card">
+            <img src="/static/svgs/cote.svg" alt="کت" />
+            <h3>کت (Admin/Teacher App)</h3>
+            <p>ابزار کاربردی مدیران و معلمان برای مدیریت کلاس، داده‌های آموزشی و پیگیری امور روزانه.</p>
+            <a class="btn btn-outline" href="/cote.html">اطلاعات بیشتر</a>
+          </article>
+          <article class="app-card">
+            <img src="/static/svgs/geve.svg" alt="گیوه" />
+            <h3>گیوه (Library System)</h3>
+            <p>سامانه کتابخانه مدرسه برای مدیریت کتاب‌ها، امانت‌ها و دسترسی سریع کاربران.</p>
+            <a class="btn btn-outline" href="/giveh.html">اطلاعات بیشتر</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="demo">
+      <div class="container demo-box">
+        <h2>درخواست دمو</h2>
+        <p>برای دریافت نسخه نمایشی و مشاوره راه‌اندازی، فرم را تکمیل کنید.</p>
+        <button class="btn btn-primary" data-open-modal>درخواست دمو</button>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <h2>ارتباط با ما</h2>
+        <div class="contact-grid">
+          <a href="tel:+982112345678">تلفن: ۰۲۱-۱۲۳۴۵۶۷۸</a>
+          <a href="mailto:info@astingroup.ir">ایمیل: info@astingroup.ir</a>
+          <a href="https://bale.ai/astin" target="_blank" rel="noopener">Bale</a>
+          <a href="https://instagram.com/astin" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://aparat.com/astin" target="_blank" rel="noopener">Aparat</a>
+          <a href="https://twitter.com/astin" target="_blank" rel="noopener">Twitter</a>
+          <a href="https://youtube.com/@astin" target="_blank" rel="noopener">YouTube</a>
+          <a href="https://linkedin.com/company/astin" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <p>ساخته شده با <span aria-hidden="true">❤</span> در گروه آستین</p>
+      <img src="/static/svgs/astin.svg" alt="لوگو آستین" />
+    </div>
+  </footer>
+
+  <div class="modal" id="demoModal" aria-hidden="true" role="dialog" aria-labelledby="demoTitle">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-panel">
+      <button class="modal-close" aria-label="بستن" data-close-modal>&times;</button>
+      <h2 id="demoTitle">فرم درخواست دمو</h2>
+      <form class="demo-form" novalidate>
+        <label>
+          نام مدرسه
+          <input type="text" name="school" required />
+        </label>
+        <label>
+          نام ثبتکننده
+          <input type="text" name="registrar" required />
+        </label>
+        <label>
+          شماره تماس
+          <input type="tel" name="phone" required />
+        </label>
+        <label>
+          نحوه آشنایی
+          <select name="source" id="sourceSelect" required>
+            <option value="">انتخاب کنید</option>
+            <option value="google">گوگل</option>
+            <option value="social">شبکههای اجتماعی</option>
+            <option value="astin-ads">تبلیغات آستین</option>
+            <option value="manager-ref">پیشنهاد مدیران دیگر</option>
+            <option value="other">سایر</option>
+          </select>
+        </label>
+
+        <label id="managerSchoolField" class="conditional" hidden>
+          نام مدرسه پیشنهاددهنده
+          <input type="text" name="ref_school" />
+        </label>
+
+        <label id="otherExplainField" class="conditional" hidden>
+          توضیحات
+          <input type="text" name="other_explain" />
+        </label>
+
+        <button type="submit" class="btn btn-primary">ارسال درخواست</button>
+      </form>
     </div>
   </div>
-</section>
 
-<!-- ═══════════════════════════════════════════════
-     KIOSK
-═══════════════════════════════════════════════ -->
-<section class="kiosk-section" id="kiosk" aria-labelledby="kiosk-heading">
-  <div class="kiosk-text">
-    <p class="section-label dark">۰۰۲ — سخت‌افزار</p>
-    <h2 id="kiosk-heading">کیوسک آستین</h2>
-    <p>
-      قلب سیستم آستین. دانش‌آموزان آستین لباسشان را جلوی کیوسک می‌گیرند
-      و حضورشان در کمتر از یک ثانیه ثبت می‌شود.
-    </p>
-    <p>
-      هر دانش‌آموز یک <strong>تگ NFC زیردوزی</strong> در لباسش دارد.
-      دستگاه RFID داخل کیوسک این تگ را می‌خواند و اطلاعات را
-      بلافاصله به سرور آستین ارسال می‌کند.
-    </p>
-    <ul class="tech-tags" aria-label="فناوری‌های استفاده‌شده">
-      <li class="tech-tag">NFC</li>
-      <li class="tech-tag">RFID Reader</li>
-      <li class="tech-tag">Tablet</li>
-      <li class="tech-tag">Real-time Server</li>
-    </ul>
-  </div>
-
-  <div class="kiosk-visual">
-    <img src="./static/images/kiosk.png"
-         alt="کیوسک آستین — دستگاه ثبت حضور و غیاب با تگ NFC در مدرسه"
-         width="500" height="300"
-         loading="lazy">
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════
-     APP SECTION
-═══════════════════════════════════════════════ -->
-<section class="app-section" id="apps" aria-labelledby="apps-heading">
-  <div class="app-inner">
-    <p class="section-label dark">۰۰۳ — نرم‌افزار</p>
-    <h2 class="section-title dark" id="apps-heading">
-      نرم‌افزار اصلی آستین<br>برای دانش‌آموزان
-    </h2>
-
-    <div class="phones-row" aria-hidden="true">
-      <!-- phone 1 -->
-      <div class="phone-mock">
-        <div class="p-header" style="background:#0a0a0a;">
-          <span>📚</span>
-          <span style="font-size:0.75rem;">گیوه — کتابخانه</span>
-        </div>
-        <div class="p-body">
-          <div class="p-chip">کتاب‌های امانتی</div>
-          <div class="p-row">
-            <div class="p-dot" style="background:#f59e0b;"></div>
-            <span>شازده کوچولو</span>
-          </div>
-          <div class="p-row">
-            <div class="p-dot" style="background:#22c55e;"></div>
-            <span>بازگشت‌شده</span>
-          </div>
-          <div class="p-row" style="color:#aaa;font-size:0.65rem;justify-content:center;">مشاهده همه ←</div>
-        </div>
-      </div>
-
-      <!-- phone 2 (main) -->
-      <div class="phone-mock">
-        <div class="p-header" style="background:#0a0a0a;font-size:0.9rem;">
-          <svg width="18" height="18" viewBox="0 0 100 100" fill="white" aria-hidden="true">
-            <rect x="10" y="10" width="80" height="80" rx="10" fill="white"/>
-            <rect x="22" y="18" width="20" height="36" rx="3" fill="#0a0a0a"/>
-            <rect x="58" y="18" width="20" height="36" rx="3" fill="#0a0a0a"/>
-            <rect x="22" y="60" width="56" height="16" rx="4" fill="#0a0a0a"/>
-            <circle cx="34" cy="68" r="3" fill="white"/>
-            <circle cx="50" cy="68" r="3" fill="white"/>
-            <circle cx="66" cy="68" r="3" fill="white"/>
-          </svg>
-          <span>آستین</span>
-        </div>
-        <div class="p-body">
-          <div style="background:#0a0a0a;border-radius:10px;padding:12px;color:#fff;text-align:center;">
-            <div style="font-size:0.65rem;color:rgba(255,255,255,0.4);margin-bottom:4px;">وضعیت امروز</div>
-            <div style="font-size:1.3rem;font-weight:900;color:#22c55e;">حاضر ✓</div>
-            <div style="font-size:0.65rem;color:rgba(255,255,255,0.4);margin-top:4px;">۰۷:۱۸</div>
-          </div>
-          <div class="p-chip">حضور و غیاب</div>
-          <div class="p-row">
-            <div class="p-dot" style="background:#22c55e;"></div>
-            <div>
-              <div style="font-size:0.72rem;font-weight:700;">۱۴۰۴/۱۱/۸</div>
-              <div style="font-size:0.62rem;color:#999;">۰۷:۱۸ — به موقع</div>
-            </div>
-          </div>
-          <div class="p-row">
-            <div class="p-dot" style="background:#22c55e;"></div>
-            <div>
-              <div style="font-size:0.72rem;font-weight:700;">۱۴۰۴/۱۱/۷</div>
-              <div style="font-size:0.62rem;color:#999;">۰۷:۲۲ — به موقع</div>
-            </div>
-          </div>
-          <div class="p-row">
-            <div class="p-dot" style="background:#f59e0b;"></div>
-            <div>
-              <div style="font-size:0.72rem;font-weight:700;">۱۴۰۴/۱۱/۶</div>
-              <div style="font-size:0.62rem;color:#999;">۰۸:۳۱ — دیرکرد</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- phone 3 -->
-      <div class="phone-mock">
-        <div class="p-header" style="background:#0a0a0a;">
-          <span>🏫</span>
-          <span style="font-size:0.75rem;">اطلاعات مدرسه</span>
-        </div>
-        <div class="p-body">
-          <div class="p-chip">اعلانات</div>
-          <div class="p-row" style="flex-direction:column;align-items:flex-start;gap:4px;">
-            <span style="font-weight:700;font-size:0.72rem;">زنگ تفریح ساعت ۱۰</span>
-            <span style="font-size:0.62rem;color:#999;">امروز</span>
-          </div>
-          <div class="p-row" style="flex-direction:column;align-items:flex-start;gap:4px;">
-            <span style="font-weight:700;font-size:0.72rem;">بوفه: منوی فردا</span>
-            <span style="font-size:0.62rem;color:#999;">دیروز</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════
-     TIMELINE
-═══════════════════════════════════════════════ -->
-<section class="timeline-section" id="timeline" aria-labelledby="timeline-heading">
-  <p class="section-label dark">۰۰۴ — مسیر پروژه</p>
-  <h2 class="section-title dark" id="timeline-heading">از ایده تا اجرا</h2>
-
-  <ol class="timeline">
-    <li class="tl-item">
-      <div class="tl-content">
-        <time class="tl-date" datetime="2024-10-06">۱۵ مهر ۱۴۰۴</time>
-        <div class="tl-title">شروع غیررسمی</div>
-        <p class="tl-desc">برنامه‌نویسی بخش‌های مختلف سیستم آغاز شد.</p>
-      </div>
-      <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
-    </li>
-    <li class="tl-item">
-      <div class="tl-content">
-        <time class="tl-date" datetime="2024-11-10">۲۰ آبان ۱۴۰۴</time>
-        <div class="tl-title">تأیید مدیریت مدرسه</div>
-        <p class="tl-desc">پروژه به مدیریت ارائه شد و مورد قبول قرار گرفت.</p>
-      </div>
-      <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
-    </li>
-    <li class="tl-item">
-      <div class="tl-content">
-        <time class="tl-date" datetime="2024-12-05">۱۵ آذر ۱۴۰۴</time>
-        <div class="tl-title">ساخت کیوسک آستین</div>
-        <p class="tl-desc">طراحی و ساخت کیوسک. نصب تبلت، هاب، RFID و شارژر. سفارش تگ‌های NFC.</p>
-      </div>
-      <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
-    </li>
-    <li class="tl-item">
-      <div class="tl-content">
-        <time class="tl-date" datetime="2024-12-30">۱۰ دی ۱۴۰۴</time>
-        <div class="tl-title">جمع‌آوری اطلاعات</div>
-        <p class="tl-desc">اطلاعات دانش‌آموزان جمع‌آوری و به سرور آستین اضافه شدند.</p>
-      </div>
-      <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
-    </li>
-    <li class="tl-item">
-      <div class="tl-content">
-        <time class="tl-date" datetime="2025-01-03">۱۴ دی ۱۴۰۴</time>
-        <div class="tl-title">کمپین اول + زیردوزی تگ</div>
-        <p class="tl-desc">شروع اولین کمپین. تحویل لباس‌ها برای دوختن تگ NFC.</p>
-      </div>
-      <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
-    </li>
-    <li class="tl-item">
-      <div class="tl-content">
-        <time class="tl-date" datetime="2025-01-18">۲۹ دی ۱۴۰۴</time>
-        <div class="tl-title">آغاز رسمی آستین 🎉</div>
-        <p class="tl-desc">بازگشت لباس‌ها، جشن راه‌اندازی و شروع رسمی حضور و غیاب با آستین.</p>
-      </div>
-      <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
-    </li>
-    <li class="tl-item">
-      <div class="tl-content">
-        <time class="tl-date" datetime="2025-01-23">۳ بهمن ۱۴۰۴</time>
-        <div class="tl-title">راه‌اندازی نرم‌افزار کُت</div>
-        <p class="tl-desc">ارائه اپ کُت به مدیریت و معاونان مدرسه و شروع استفاده رسمی.</p>
-      </div>
-      <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
-    </li>
-    <li class="tl-item">
-      <div class="tl-content">
-        <time class="tl-date" datetime="2025-02-09">۲۰ بهمن ۱۴۰۴</time>
-        <div class="tl-title">کمپین سوم + گیوه</div>
-        <p class="tl-desc">شروع کمپین سوم و اضافه شدن بخش کتابخانه (گیوه) به نرم‌افزار اصلی.</p>
-      </div>
-      <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
-    </li>
-  </ol>
-</section>
-
-<!-- ═══════════════════════════════════════════════
-     STATS
-═══════════════════════════════════════════════ -->
-<section class="stats-bar" aria-label="آمار پروژه آستین">
-  <div class="stats-inner">
-    <div class="stat-item">
-      <div class="stat-num">۴</div>
-      <p class="stat-label">نرم‌افزار اختصاصی</p>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">۳</div>
-      <p class="stat-label">کمپین اجراشده</p>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">&lt;۱s</div>
-      <p class="stat-label">زمان ثبت حضور</p>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">۱۰۰٪</div>
-      <p class="stat-label">بدون کاغذ</p>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════
-     FOOTER
-═══════════════════════════════════════════════ -->
-<footer>
-  <div class="footer-logo">گروه آستین</div>
-  <nav class="footer-apps" aria-label="نرم‌افزارهای آستین">
-    <a href="/"        class="footer-app">آستین</a>
-    <span class="footer-sep" aria-hidden="true">·</span>
-    <a href="/coat"    class="footer-app">کُت</a>
-    <span class="footer-sep" aria-hidden="true">·</span>
-    <a href="/keravat" class="footer-app">کراوات</a>
-    <span class="footer-sep" aria-hidden="true">·</span>
-    <a href="/giveh"   class="footer-app">گیوه</a>
-  </nav>
-  <p>امیر حسین اخضری &amp; امیر محمد ریاحی — پاییز و زمستان ۱۴۰۴</p>
-</footer>
-
-<script src="./main.js" defer></script>
+  <script src="main.js"></script>
 </body>
 </html>
